@@ -12,7 +12,7 @@ public class PlungerController : MonoBehaviour
   private void Start()
   {
       Maxsize = transform.localScale;
-      Minsize = transform.localScale / 2;
+      Minsize = transform.localScale / 3;
   }
 
   // Update is called once per frame
