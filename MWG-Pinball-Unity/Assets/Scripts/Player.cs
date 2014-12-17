@@ -1,4 +1,6 @@
-﻿public class Player
+﻿using System.Runtime.InteropServices;
+
+public class Player
 {
   public Player(int number, int balls)
   {
@@ -7,6 +9,18 @@
   }
 
   public int Balls { get; private set; }
+
+  public int ExtraBalls { get; private set; }
+
+  public bool HasBalls
+  {
+    get { return Balls > 0; }
+  }
+
+  public bool HasExtraBalls
+  {
+    get { return ExtraBalls > 0; }
+  }
 
   public int Number { get; private set; }
 
@@ -19,6 +33,16 @@
 
   public void AddExtraBall()
   {
-    Balls++;
+    ExtraBalls++;
+  }
+
+  public void UseBall()
+  {
+    Balls--;
+  }
+
+  public void UseExtraBall()
+  {
+    ExtraBalls--;
   }
 }

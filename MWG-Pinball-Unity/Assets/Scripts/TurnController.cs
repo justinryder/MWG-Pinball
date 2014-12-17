@@ -17,15 +17,25 @@ public class TurnController : MonoBehaviour
 
   public int StartingBallCount = 3;
 
-  #endregion
+  public bool EnableDebugGUI = false;
 
-  public event EventHandler<OnTurnStartEventArgs> OnTurnStart;
+  #endregion
 
   private List<Player> _players;
 
   private int _playerCount = 1;
 
-  private int _currentPlayerIndex = 0;
+  private int _currentPlayerIndex = -1;
+
+  #region Events
+
+  public event EventHandler<OnTurnStartEventArgs> OnTurnStart;
+
+  public event EventHandler<EventArgs> OnGameStart; 
+
+  public event EventHandler<EventArgs> OnGameOver;
+
+  #endregion
 
   public bool GameStarted
   {
@@ -34,20 +44,32 @@ public class TurnController : MonoBehaviour
 
   public Player CurrentPlayer
   {
-    get { return GameStarted ? _players[_currentPlayerIndex] : null; }
+    get { return GameStarted && _currentPlayerIndex > -1 ? _players[_currentPlayerIndex] : null; }
   }
 
   public void NextTurn()
   {
-    _currentPlayerIndex++;
-    if (_currentPlayerIndex == _players.Count)
+    // Only go to next turn if there are still players with balls left
+    if (_players.Any(x => x.HasBalls))
     {
-      _currentPlayerIndex = 0;
-    }
+      do
+      {
+        _currentPlayerIndex++;
+        if (_currentPlayerIndex == _players.Count)
+        {
+          _currentPlayerIndex = 0;
+        }
+      }
+      while (!CurrentPlayer.HasBalls); // Skip players that are out of balls
 
-    if (OnTurnStart != null)
+      if (OnTurnStart != null)
+      {
+        OnTurnStart(this, new OnTurnStartEventArgs(CurrentPlayer));
+      }
+    }
+    else
     {
-      OnTurnStart(this, new OnTurnStartEventArgs(CurrentPlayer));
+      EndGame();
     }
   }
 
@@ -76,12 +98,27 @@ public class TurnController : MonoBehaviour
 
       foreach (var player in _players)
       {
-        GUILayout.Label(string.Format("{0}Player {1} - Points: {2} Balls: {3}", CurrentPlayer == player ? "=>" : "", player.Number, player.Score, player.Balls));
+        GUILayout.Label(
+          string.Format(
+            "{0}Player {1} - Points: {2} Balls: {3} Extra Balls: {4}",
+            CurrentPlayer == player ? "=>" : "",
+            player.Number,
+            player.Score,
+            player.Balls,
+            player.ExtraBalls));
       }
 
-      if (GUILayout.Button("Skip Turn"))
+      if (EnableDebugGUI)
       {
-        NextTurn();
+        if (GUILayout.Button("Skip Turn"))
+        {
+          NextTurn();
+        }
+
+        if (GUILayout.Button("Use Current Player's Ball"))
+        {
+          CurrentPlayer.UseBall();
+        }
       }
 
       GUILayout.EndArea();
@@ -90,6 +127,27 @@ public class TurnController : MonoBehaviour
 
   private void StartGame()
   {
+    Debug.Log("Game Started");
+
     _players = Enumerable.Range(1, _playerCount).Select(x => new Player(x, StartingBallCount)).ToList();
+
+    if (OnGameStart != null)
+    {
+      OnGameStart(this, new EventArgs());
+    }
+
+    NextTurn();
+  }
+
+  private void EndGame()
+  {
+    Debug.Log("Game Over");
+
+    _currentPlayerIndex = -1;
+
+    if (OnGameOver != null)
+    {
+      OnGameOver(this, new EventArgs());
+    }
   }
 }
