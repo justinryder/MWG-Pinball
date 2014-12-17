@@ -4,6 +4,8 @@ using System.Collections;
 public class PlungerController : MonoBehaviour
 {
 
+    public float Force = 5;
+
   // Use this for initialization
   private void Start()
   {
@@ -14,7 +16,9 @@ public class PlungerController : MonoBehaviour
   private void Update()
   {
       Vector3 input = new Vector3(0, Input.GetAxis("Vertical"), 0);
-      transform.position += input * Time.deltaTime;
+      this.rigidbody.AddForce(input * Time.deltaTime * Force);
+      //transform.position += input * Time.deltaTime;
+
   }
 
   public void SpawnBall()
