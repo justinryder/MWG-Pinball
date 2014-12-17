@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
-public class Player
+﻿public class Player
 {
   public Player(int number, int balls)
   {

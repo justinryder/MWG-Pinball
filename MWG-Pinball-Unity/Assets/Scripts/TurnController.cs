@@ -7,6 +7,10 @@ public class TurnController : MonoBehaviour
 {
   #region Inspector Variables
 
+  public DrainSensor DrainSensor;
+
+  public PlungerController PlungerController;
+
   public int MenuWidth = 200;
 
   public int MenuHeight = 200;
@@ -47,8 +51,33 @@ public class TurnController : MonoBehaviour
     get { return GameStarted && _currentPlayerIndex > -1 ? _players[_currentPlayerIndex] : null; }
   }
 
+  public void Start()
+  {
+    if (DrainSensor == null)
+    {
+      Debug.LogError("Assign the DrainSensor to the TurnController!");
+    }
+
+    if (PlungerController == null)
+    {
+      Debug.LogError("Assign the PlungerController to the TurnController!");
+    }
+
+    DrainSensor.OnBallDrained += DrainSensorOnOnBallDrained;
+  }
+
+  public void Destroy()
+  {
+    DrainSensor.OnBallDrained -= DrainSensorOnOnBallDrained;
+  }
+
   public void NextTurn()
   {
+    if (!GameStarted)
+    {
+      return;
+    }
+
     // Only go to next turn if there are still players with balls left
     if (_players.Any(x => x.HasBalls))
     {
@@ -61,6 +90,9 @@ public class TurnController : MonoBehaviour
         }
       }
       while (!CurrentPlayer.HasBalls); // Skip players that are out of balls
+
+      CurrentPlayer.UseBall();
+      // TODO: Tell PlungerController to spawn ball
 
       if (OnTurnStart != null)
       {
@@ -141,6 +173,11 @@ public class TurnController : MonoBehaviour
 
   private void EndGame()
   {
+    if (!GameStarted)
+    {
+      return;
+    }
+
     Debug.Log("Game Over");
 
     _currentPlayerIndex = -1;
@@ -148,6 +185,19 @@ public class TurnController : MonoBehaviour
     if (OnGameOver != null)
     {
       OnGameOver(this, new EventArgs());
+    }
+  }
+
+  private void DrainSensorOnOnBallDrained(object sender, EventArgs eventArgs)
+  {
+    if (CurrentPlayer.HasExtraBalls)
+    {
+      CurrentPlayer.UseExtraBall();
+      // TODO: Tell PlungerController to spawn a ball
+    }
+    else
+    {
+      NextTurn();
     }
   }
 }
