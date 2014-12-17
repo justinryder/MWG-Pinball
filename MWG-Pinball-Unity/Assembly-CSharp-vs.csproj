@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\DrainSensor.cs" />
      <Compile Include="Assets\Scripts\DropTargetManager.cs" />
      <Compile Include="Assets\Scripts\DropTargets.cs" />
      <Compile Include="Assets\Scripts\Enum\FlipperSide.cs" />
