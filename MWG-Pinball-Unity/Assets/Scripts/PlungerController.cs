@@ -20,20 +20,26 @@ public class PlungerController : MonoBehaviour
   {
       Vector3 input = new Vector3(0, Input.GetAxis("Vertical"), 0);
       this.rigidbody.AddForce(input * Time.deltaTime * Force);
-
+      Scale(input * Time.deltaTime * Force);
       //transform.position += input * Time.deltaTime
   }
 
   private void Scale(Vector3 amount)
   {
       //Make sure that we can never get bigger than we can:
-      var OriginalSize = transform.localScale;
+      var OriginalSize = transform.localScale; 
       Debug.Log("Original:" + OriginalSize);
-      var NewSize = transform.localScale += amount * Time.deltaTime;
-      Debug.Log("New:" + NewSize);
-      //if (NewSize < Minsize) {
-      //    var newSize = 
-      //    }
+      transform.localScale += amount * Time.deltaTime * Force;
+      var NewSize = transform.localScale;   
+      Debug.Log("NewSize:" + NewSize);
+      if (NewSize.y < Minsize.y)
+      {
+          transform.localScale = new Vector3(transform.localScale.x, Minsize.y, transform.localScale.z);
+      }
+      if (NewSize.y > Maxsize.y)
+      {
+          transform.localScale = new Vector3(transform.localScale.x, Maxsize.y, transform.localScale.z);
+      }
   }
 
   public void SpawnBall()
