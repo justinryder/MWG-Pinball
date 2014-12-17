@@ -46,10 +46,16 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
      <Compile Include="Assets\Scripts\Enum\FlipperSide.cs" />
      <Compile Include="Assets\Scripts\FlipperController.cs" />
      <Compile Include="Assets\Scripts\MoveCamera.cs" />
      <Compile Include="Assets\Scripts\PlungerController.cs" />
+=======
+     <Compile Include="Assets\Scripts\PlungerController.cs" />
+     <Compile Include="Assets\Scripts\PopBumper.cs" />
+     <Compile Include="Assets\Scripts\Slingshot.cs" />
+>>>>>>> 818569430b301126e52071cbd4325eac715e461c
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
