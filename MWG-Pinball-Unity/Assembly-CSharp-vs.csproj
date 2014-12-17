@@ -46,16 +46,19 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
+     <Compile Include="Assets\Scripts\DropTargetManager.cs" />
+     <Compile Include="Assets\Scripts\DropTargets.cs" />
      <Compile Include="Assets\Scripts\Enum\FlipperSide.cs" />
      <Compile Include="Assets\Scripts\FlipperController.cs" />
+     <Compile Include="Assets\Scripts\LaneLights.cs" />
+     <Compile Include="Assets\Scripts\LineLightsManager.cs" />
      <Compile Include="Assets\Scripts\MoveCamera.cs" />
-     <Compile Include="Assets\Scripts\PlungerController.cs" />
-=======
+     <Compile Include="Assets\Scripts\OnTurnStartEventArgs.cs" />
+     <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\PlungerController.cs" />
      <Compile Include="Assets\Scripts\PopBumper.cs" />
      <Compile Include="Assets\Scripts\Slingshot.cs" />
->>>>>>> 818569430b301126e52071cbd4325eac715e461c
+     <Compile Include="Assets\Scripts\TurnController.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
