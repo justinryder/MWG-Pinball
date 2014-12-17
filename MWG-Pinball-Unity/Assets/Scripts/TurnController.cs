@@ -15,6 +15,8 @@ public class TurnController : MonoBehaviour
 
   public int ScoreHeight = 200;
 
+  public int StartingBallCount = 3;
+
   #endregion
 
   public event EventHandler<OnTurnStartEventArgs> OnTurnStart;
@@ -61,7 +63,7 @@ public class TurnController : MonoBehaviour
 
       if (GUILayout.Button("Play"))
       {
-        _players = Enumerable.Range(1, _playerCount).Select(x => new Player(x)).ToList();
+        StartGame();
       }
 
       GUILayout.EndArea();
@@ -74,10 +76,20 @@ public class TurnController : MonoBehaviour
 
       foreach (var player in _players)
       {
-        GUILayout.Label(string.Format("Player {0}: {1}{2}", player.Number, player.Score, CurrentPlayer == player ? " It's your turn!" : ""));
+        GUILayout.Label(string.Format("{0}Player {1} - Points: {2} Balls: {3}", CurrentPlayer == player ? "=>" : "", player.Number, player.Score, player.Balls));
+      }
+
+      if (GUILayout.Button("Skip Turn"))
+      {
+        NextTurn();
       }
 
       GUILayout.EndArea();
     }
+  }
+
+  private void StartGame()
+  {
+    _players = Enumerable.Range(1, _playerCount).Select(x => new Player(x, StartingBallCount)).ToList();
   }
 }
