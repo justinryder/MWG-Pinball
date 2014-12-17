@@ -11,17 +11,15 @@ public class PlungerController : MonoBehaviour
   // Use this for initialization
   private void Start()
   {
-      Maxsize = collider.bounds.size;
-      Minsize = collider.bounds.size / 2;
+      Maxsize = transform.localScale;
+      Minsize = transform.localScale / 2;
   }
 
   // Update is called once per frame
   private void Update()
   {
       Vector3 input = new Vector3(0, Input.GetAxis("Vertical"), 0);
-      this.rigidbody.AddForce(input * Time.deltaTime * Force);
       Scale(input * Time.deltaTime * Force);
-      //transform.position += input * Time.deltaTime
   }
 
   private void Scale(Vector3 amount)
