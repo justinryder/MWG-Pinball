@@ -51,12 +51,12 @@ namespace Assets.Scripts
           spring.targetPosition = restPositionLeft;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
           _flipDownLeft = true;
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftControl))
+        if (Input.GetKeyUp(KeyCode.Z))
         {
           _flipDownLeft = false;
         }
@@ -73,12 +73,12 @@ namespace Assets.Scripts
           spring.targetPosition = restPositionRight;
         }
 
-        if (Input.GetKeyDown(KeyCode.RightControl))
+        if (Input.GetKeyDown(KeyCode.M))
         {
           _flipDownRight = true;
         }
 
-        if (Input.GetKeyUp(KeyCode.RightControl))
+        if (Input.GetKeyUp(KeyCode.M))
         {
           _flipDownRight = false;
         }
