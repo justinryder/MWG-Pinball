@@ -37,10 +37,8 @@ public class PlungerController : MonoBehaviour
   {
       //Make sure that we can never get bigger than we can:
       var OriginalSize = transform.localScale; 
-      Debug.Log("Original:" + OriginalSize);
       transform.localScale += amount * Time.deltaTime * Force;
       var NewSize = transform.localScale;   
-      Debug.Log("NewSize:" + NewSize);
       if (NewSize.y < Minsize.y)
       {
           transform.localScale = new Vector3(transform.localScale.x, Minsize.y, transform.localScale.z);
@@ -48,6 +46,14 @@ public class PlungerController : MonoBehaviour
       if (NewSize.y > Maxsize.y)
       {
           transform.localScale = new Vector3(transform.localScale.x, Maxsize.y, transform.localScale.z);
+      }
+  }
+
+  private void OnCollisionEnter(Collision collision)
+  {
+      if (collision.gameObject.tag == "Ball")
+      {
+          //collision.gameObject.transform
       }
   }
 
