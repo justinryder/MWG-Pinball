@@ -9,6 +9,7 @@ public class PlungerController : MonoBehaviour
 
   private Vector3 Maxsize;
   private Vector3 Minsize;
+  private GameObject ball;
 
   // Use this for initialization
   private void Start()
@@ -53,6 +54,6 @@ public class PlungerController : MonoBehaviour
 
   public void SpawnBall()
   {
-      var ball = Instantiate(PinballPreFab, new Vector3(0.102f, 1.028f, -9.27f), Quaternion.identity);
+      ball = (GameObject)Instantiate(PinballPreFab, new Vector3(0.102f, 1.028f, -9.27f), Quaternion.identity);
   }
 }
