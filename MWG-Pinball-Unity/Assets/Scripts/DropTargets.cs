@@ -5,7 +5,7 @@ public class DropTargets : MonoBehaviour {
 
   public bool Status = false;
 
-  public int Points = 100;
+  public int Points = 500;
 
   public TurnController TurnController;
 

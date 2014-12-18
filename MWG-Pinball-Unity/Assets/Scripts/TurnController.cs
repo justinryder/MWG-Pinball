@@ -92,7 +92,7 @@ public class TurnController : MonoBehaviour
       while (!CurrentPlayer.HasBalls); // Skip players that are out of balls
 
       CurrentPlayer.UseBall();
-      // TODO: Tell PlungerController to spawn ball
+      PlungerController.SpawnBall();
 
       if (OnTurnStart != null)
       {
@@ -193,7 +193,7 @@ public class TurnController : MonoBehaviour
     if (CurrentPlayer.HasExtraBalls)
     {
       CurrentPlayer.UseExtraBall();
-      // TODO: Tell PlungerController to spawn a ball
+      PlungerController.SpawnBall();
     }
     else
     {

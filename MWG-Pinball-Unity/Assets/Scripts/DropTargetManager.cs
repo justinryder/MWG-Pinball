@@ -9,7 +9,7 @@ public class DropTargetManager : MonoBehaviour {
   public DropTargets DropTargetW;
   public DropTargets DropTargetG;
 
-  public int Bonus = 8000;
+  public int Bonus = 2000;
 
   public TurnController turnController;
 

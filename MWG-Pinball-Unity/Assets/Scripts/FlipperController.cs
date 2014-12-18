@@ -25,6 +25,8 @@ namespace Assets.Scripts
     public float FlipperStrength = 100f;
     public float FlipperDamper = 1f;
 
+    public JointSpring spring = new JointSpring();
+
     void Awake()
     {
       hingeJoint.useSpring = true;
@@ -37,9 +39,10 @@ namespace Assets.Scripts
 
       spring.spring = this.FlipperStrength;
       spring.damper = this.FlipperDamper;
+
       if (FlipperSide == FlipperSide.Left)
       {
-        if (this._flipDownLeft)
+        if (_flipDownLeft)
         {
           spring.targetPosition = pressedPositionLeft;
         }
@@ -50,17 +53,18 @@ namespace Assets.Scripts
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-          this._flipDownLeft = true;
+          _flipDownLeft = true;
         }
+
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
-          this._flipDownLeft = false;
+          _flipDownLeft = false;
         }
       }
 
       if (FlipperSide == FlipperSide.Right)
       {
-        if (this._flipDownRight)
+        if (_flipDownRight)
         {
           spring.targetPosition = pressedPositionRight;
         }
@@ -71,11 +75,12 @@ namespace Assets.Scripts
 
         if (Input.GetKeyDown(KeyCode.RightControl))
         {
-          this._flipDownRight = true;
+          _flipDownRight = true;
         }
+
         if (Input.GetKeyUp(KeyCode.RightControl))
         {
-          this._flipDownRight = false;
+          _flipDownRight = false;
         }
       }
 
