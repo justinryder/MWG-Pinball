@@ -17,6 +17,13 @@ public class LaneLights : MonoBehaviour
   public bool IsLit
   {
     get { return TurnController.CurrentPlayer != null && isLit[TurnController.CurrentPlayer]; }
+    set
+    {
+      if (TurnController.CurrentPlayer != null)
+      {
+        isLit[TurnController.CurrentPlayer] = value;
+      }
+    }
   }
 
   public void Start()

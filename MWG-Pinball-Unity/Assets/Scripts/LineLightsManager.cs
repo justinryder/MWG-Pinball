@@ -29,5 +29,27 @@ public class LineLightsManager : MonoBehaviour
       LaneLightW.Reset();
       LaneLightG.Reset();
     }
+
+    if (Input.GetKeyUp(KeyCode.Z))
+    {
+      var m = LaneLightM.IsLit;
+      var w = LaneLightW.IsLit;
+      var g = LaneLightG.IsLit;
+
+      LaneLightW.IsLit = m;
+      LaneLightG.IsLit = w;
+      LaneLightM.IsLit = g;
+    }
+
+    if (Input.GetKeyUp(KeyCode.M))
+    {
+      var m = LaneLightM.IsLit;
+      var w = LaneLightW.IsLit;
+      var g = LaneLightG.IsLit;
+
+      LaneLightG.IsLit = m;
+      LaneLightM.IsLit = w;
+      LaneLightW.IsLit = g;
+    }
   }
 }
