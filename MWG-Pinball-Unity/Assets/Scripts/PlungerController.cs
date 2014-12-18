@@ -27,6 +27,15 @@ public class PlungerController : MonoBehaviour
       FlingBall();
   }
 
+  public void OnCollisionEnter(Collision collision)
+  {
+    if (collision.gameObject.tag == "Ball")
+    {
+      Debug.Log("You suck, the plunger caught the ball.");
+      ball = collision.gameObject;
+    }
+  }
+
   private void FlingBall()
   {
       var delta = Maxsize.y - transform.localScale.y;

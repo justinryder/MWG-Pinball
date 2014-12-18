@@ -11,55 +11,50 @@ public class BallSaver : MonoBehaviour
   public TurnController TurnController;
 
   private float holdTimer = 1.5f;
-	// Use this for initialization
-	void Start () {
-	
-	}
 
-  void OnCollisionEnter(Collision collision)
+  // Use this for initialization
+  private void Start()
   {
-    foreach (ContactPoint contact in collision.contacts)
+
+  }
+
+  private void OnCollisionEnter(Collision collision)
+  {
+    if (collision.gameObject.tag == "Ball")
     {
-      if (contact.otherCollider.tag == "Ball")
+      collision.rigidbody.velocity = new Vector3(0, 0, 0);
+      collision.rigidbody.position = this.transform.position;
+      holdBall = true;
+      ball = collision.gameObject;
+      TurnController.CurrentPlayer.AddScore(5000);
+
+    }
+  }
+
+  private void OnCollisionStay(Collision collision)
+  {
+    if (collision.gameObject.tag == "Ball")
+    {
+      if (holdBall)
       {
-        contact.otherCollider.rigidbody.velocity = new Vector3(0, 0, 0);
-        contact.otherCollider.rigidbody.position = this.transform.position;
-        holdBall = true;
-        ball = contact.otherCollider.gameObject;
-        TurnController.CurrentPlayer.AddScore(5000);
-        
+        collision.rigidbody.velocity = new Vector3(0, 0, 0);
+        collision.gameObject.transform.position = this.transform.position;
       }
     }
   }
 
-  void OnCollisionStay(Collision collision)
+  // Update is called once per frame
+  private void Update()
   {
-    foreach (ContactPoint contact in collision.contacts)
+    if (holdBall)
     {
-      if (contact.otherCollider.tag == "Ball")
+      holdTimer -= Time.deltaTime;
+      if (holdTimer <= 0)
       {
-        if (holdBall)
-        {
-          contact.otherCollider.rigidbody.velocity = new Vector3(0, 0, 0);
-          contact.otherCollider.gameObject.transform.position = this.transform.position;
-        }
-      }
-    }
-  }
-	
-	// Update is called once per frame
-	void Update () {
-
-	  if (holdBall)
-	  {
-	    holdTimer -= Time.deltaTime;
-	    if (holdTimer <= 0)
-	    {
-	      holdBall = false;
+        holdBall = false;
         ball.rigidbody.AddForce(new Vector3(-0.5f, 0, -0.5f));
-	      ball = null;
-	    }
-	  }
-	
-	}
+        ball = null;
+      }
+    }
+  }
 }
