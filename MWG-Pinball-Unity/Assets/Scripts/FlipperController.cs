@@ -34,7 +34,6 @@ namespace Assets.Scripts
     private void Update()
     {
       JointSpring spring = new JointSpring();
-      this.transform.localScale = new Vector3(10,10,10);
 
       spring.spring = this.FlipperStrength;
       spring.damper = this.FlipperDamper;
