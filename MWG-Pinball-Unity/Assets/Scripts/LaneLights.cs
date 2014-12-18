@@ -6,6 +6,10 @@ public class LaneLights : MonoBehaviour
 {
   public TurnController TurnController;
 
+  public Renderer OnRenderer;
+
+  public Renderer OffRenderer;
+
   private Dictionary<Player, bool> isLit = new Dictionary<Player, bool>();
 
   private int points = 1000;
@@ -19,7 +23,17 @@ public class LaneLights : MonoBehaviour
   {
     if (TurnController == null)
     {
-      Debug.LogError("Assign TurnController to LaneLights");
+      Debug.LogError("Assign TurnController to LaneLights!");
+    }
+
+    if (OnRenderer == null)
+    {
+      Debug.LogError("Assign OnRenderer to LaneLights!");
+    }
+
+    if (OffRenderer == null)
+    {
+      Debug.LogError("Assign OffRenderer to LaneLights!");
     }
 
     TurnController.OnGameStart += TurnControllerOnOnGameStart;
@@ -37,11 +51,8 @@ public class LaneLights : MonoBehaviour
 
   public void Update()
   {
-    if (TurnController.CurrentPlayer != null)
-    {
-      renderer.material.color = IsLit ? Color.green : Color.white;
-      //renderer.material = renderer.materials[IsLit ? 0 : 1];
-    }
+    OffRenderer.gameObject.active = !IsLit;
+    OnRenderer.gameObject.active = IsLit;
   }
 
   private void TurnControllerOnOnGameStart(object sender, EventArgs eventArgs)
