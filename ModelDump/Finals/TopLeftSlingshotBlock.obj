@@ -1,6 +1,5 @@
 # Blender v2.72 (sub 0) OBJ File: 'TopLeftSlingshotBlock.blend'
 # www.blender.org
-mtllib TopLeftSlingshotBlock.mtl
 o Plane
 v -0.912226 -0.000000 0.609886
 v -0.908563 -0.000000 0.621961
@@ -2078,7 +2077,6 @@ vt 0.595614 0.633074
 vt 0.350759 0.612074
 vt 0.561437 0.608480
 vt 0.569540 0.632914
-usemtl None
 s 1
 f 58/1 29/2 78/3 65/4
 f 188/5 205/6 23/7 22/8
