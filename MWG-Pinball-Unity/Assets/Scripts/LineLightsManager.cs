@@ -8,7 +8,7 @@ public class LineLightsManager : MonoBehaviour
   public LaneLights LaneLightW;
   public LaneLights LaneLightG;
 
-  public int Bonus = 8000;
+  public int Bonus = 10000;
 
   public TurnController turnController;
 

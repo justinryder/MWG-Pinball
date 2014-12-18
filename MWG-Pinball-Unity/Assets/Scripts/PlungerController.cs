@@ -5,6 +5,7 @@ public class PlungerController : MonoBehaviour
 {
   public float Force = 5;
   public float SpringForce = .05f;
+  public GameObject PinballPreFab;
 
   private Vector3 Maxsize;
   private Vector3 Minsize;
@@ -14,6 +15,7 @@ public class PlungerController : MonoBehaviour
   {
       Maxsize = transform.localScale;
       Minsize = transform.localScale / 3;
+      SpawnBall();
   }
 
   // Update is called once per frame
@@ -36,7 +38,7 @@ public class PlungerController : MonoBehaviour
   private void Scale(Vector3 amount)
   {
       //Make sure that we can never get bigger than we can:
-      var OriginalSize = transform.localScale; 
+
       transform.localScale += amount * Time.deltaTime * Force;
       var NewSize = transform.localScale;   
       if (NewSize.y < Minsize.y)
@@ -49,16 +51,8 @@ public class PlungerController : MonoBehaviour
       }
   }
 
-  private void OnCollisionEnter(Collision collision)
-  {
-      if (collision.gameObject.tag == "Ball")
-      {
-          //collision.gameObject.transform
-      }
-  }
-
   public void SpawnBall()
   {
-      //TODO: Spawn that bad boy!
+      var ball = Instantiate(PinballPreFab, new Vector3(0.102f, 1.028f, -9.27f), Quaternion.identity);
   }
 }

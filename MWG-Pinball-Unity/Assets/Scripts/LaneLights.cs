@@ -7,6 +7,9 @@ public class LaneLights : MonoBehaviour
 {
   public bool status = false;
 
+  public TurnController TurnController;
+  int points = 1000;
+
   void OnCollisionEnter(Collision collision)
   {
     foreach (ContactPoint contact in collision.contacts)
@@ -20,6 +23,7 @@ public class LaneLights : MonoBehaviour
         else
         {
           status = true;
+          TurnController.CurrentPlayer.AddScore(points);
         }
       }
     }
