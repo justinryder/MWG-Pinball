@@ -35,7 +35,12 @@ namespace Assets.Scripts
     // Update is called once per frame
     private void Update()
     {
+<<<<<<< HEAD
      
+=======
+      JointSpring spring = new JointSpring();
+
+>>>>>>> 80b18a53924d4e6d369308017963d88b9fcd092e
       spring.spring = this.FlipperStrength;
       spring.damper = this.FlipperDamper;
 
