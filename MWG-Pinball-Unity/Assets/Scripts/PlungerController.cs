@@ -4,7 +4,7 @@ using System.Collections;
 public class PlungerController : MonoBehaviour
 {
   public float Force = 5;
-  public float BallForceMultiplier = 1000;
+  public float BallForceMultiplier = 200;
   public float SpringForce = 0.04f;
   public GameObject PinballPreFab;
 
@@ -17,7 +17,6 @@ public class PlungerController : MonoBehaviour
   {
       Maxsize = transform.localScale;
       Minsize = transform.localScale / 3;
-      SpawnBall();
   }
 
   // Update is called once per frame
@@ -31,13 +30,9 @@ public class PlungerController : MonoBehaviour
 
   private void FlingBall()
   {
-      var delta = Maxsize.y - transform.localScale.y;
-
-      if (Input.GetKeyUp("down"))
+      if (Input.GetKeyUp("down") && ball != null)
       {
-          ball.rigidbody.AddForce(0, delta * BallForceMultiplier, 0);
-          Debug.Log(delta * BallForceMultiplier);
-          Debug.Log(ball.rigidbody.velocity);
+        ball.rigidbody.AddForce(transform.up * BallForceMultiplier);
       }
   }
 
@@ -67,7 +62,6 @@ public class PlungerController : MonoBehaviour
 
   public void SpawnBall()
   {
-      var position = new Vector3 (transform.position.x, transform.position.y + collider.bounds.size.y, transform.position.z);
-      ball = (GameObject)Instantiate(PinballPreFab, position, Quaternion.identity);
+    ball = (GameObject)Instantiate(PinballPreFab, transform.position + (transform.up * .4f), Quaternion.identity);
   }
 }

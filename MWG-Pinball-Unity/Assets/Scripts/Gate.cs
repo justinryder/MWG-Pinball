@@ -8,9 +8,9 @@ public class Gate : MonoBehaviour
 
   public void Start()
   {
-    if (TurnController != null)
+    if (TurnController == null)
     {
-      Debug.LogError("Assign turnController to Gate!");
+      Debug.LogError("Assign TurnController to Gate!");
     }
 
     TurnController.OnTurnStart += TurnControllerOnOnTurnStart;
