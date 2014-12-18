@@ -4,7 +4,7 @@ using System.Collections;
 public class PlungerController : MonoBehaviour
 {
   public float Force = 5;
-  public float BallForceMultiplier = 500;
+  public float BallForceMultiplier = 1000;
   public float SpringForce = 0.04f;
   public GameObject PinballPreFab;
 
@@ -36,6 +36,8 @@ public class PlungerController : MonoBehaviour
       if (Input.GetKeyUp("down"))
       {
           ball.rigidbody.AddForce(0, delta * BallForceMultiplier, 0);
+          Debug.Log(delta * BallForceMultiplier);
+          Debug.Log(ball.rigidbody.velocity);
       }
   }
 
@@ -65,6 +67,7 @@ public class PlungerController : MonoBehaviour
 
   public void SpawnBall()
   {
-      ball = (GameObject)Instantiate(PinballPreFab, new Vector3(0.102f, 1.028f, -9.27f), Quaternion.identity);
+      var position = new Vector3 (transform.position.x, transform.position.y + collider.bounds.size.y, transform.position.z);
+      ball = (GameObject)Instantiate(PinballPreFab, position, Quaternion.identity);
   }
 }
