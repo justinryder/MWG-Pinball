@@ -1,4 +1,6 @@
-﻿public class Player
+﻿using System.Diagnostics;
+
+public class Player
 {
   public Player(int number, int balls)
   {

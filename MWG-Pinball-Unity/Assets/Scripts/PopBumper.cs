@@ -23,10 +23,7 @@ public class PopBumper : MonoBehaviour
       var directionToBall = (collision.gameObject.transform.position - transform.position).normalized;
       collision.gameObject.rigidbody.AddForce(directionToBall * Force);
 
-      if (TurnController.CurrentPlayer != null)
-      {
-        TurnController.CurrentPlayer.AddScore(100);
-      }
+      TurnController.CurrentPlayer.AddScore(100);
     }
   }
 }
