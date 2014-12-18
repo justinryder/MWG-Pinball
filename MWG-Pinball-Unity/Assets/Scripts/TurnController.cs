@@ -114,7 +114,7 @@ public class TurnController : MonoBehaviour
   {
     if (!GameStarted)
     {
-      GUILayout.BeginArea(new Rect((Screen.width - MenuWidth) / 2, (Screen.height - MenuHeight) / 2, MenuWidth, MenuHeight));
+      GUILayout.BeginArea(new Rect(10, 10, MenuWidth, MenuHeight));
 
       GUILayout.Label("Player count: " + _playerCount);
 

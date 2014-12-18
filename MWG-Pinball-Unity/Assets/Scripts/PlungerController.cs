@@ -31,7 +31,6 @@ public class PlungerController : MonoBehaviour
   {
     if (collision.gameObject.tag == "Ball")
     {
-      Debug.Log("You suck, the plunger caught the ball.");
       ball = collision.gameObject;
     }
   }
