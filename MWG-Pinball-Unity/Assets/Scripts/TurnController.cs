@@ -41,6 +41,11 @@ public class TurnController : MonoBehaviour
 
   #endregion
 
+  public List<Player> Players
+  {
+    get { return _players; }
+  }
+
   public bool GameStarted
   {
     get { return _players != null; }
@@ -133,7 +138,7 @@ public class TurnController : MonoBehaviour
         GUILayout.Label(
           string.Format(
             "{0}Player {1} - Points: {2} Balls: {3} Extra Balls: {4}",
-            CurrentPlayer == player ? "=>" : "",
+            CurrentPlayer == player ? "=> " : "",
             player.Number,
             player.Score,
             player.Balls,

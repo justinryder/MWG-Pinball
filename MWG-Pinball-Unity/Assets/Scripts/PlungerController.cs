@@ -33,6 +33,7 @@ public class PlungerController : MonoBehaviour
       if (Input.GetKeyUp("down") && ball != null)
       {
         ball.rigidbody.AddForce(transform.up * BallForceMultiplier);
+        ball = null;
       }
   }
 

@@ -37,7 +37,7 @@ public class LineLightsManager : MonoBehaviour
       }
     }
 
-    if (LaneLightM.status && LaneLightW.status && LaneLightG.status)
+    if (LaneLightM.IsLit && LaneLightW.IsLit && LaneLightG.IsLit)
     {
       //send bonus 
       var currentPlayer = turnController.CurrentPlayer;
@@ -45,9 +45,10 @@ public class LineLightsManager : MonoBehaviour
       {
         currentPlayer.AddScore(Bonus);
       }
-      LaneLightM.status = false;
-      LaneLightW.status = false;
-      LaneLightG.status = false;
+
+      LaneLightM.Reset();
+      LaneLightW.Reset();
+      LaneLightG.Reset();
     }
   }
 }
