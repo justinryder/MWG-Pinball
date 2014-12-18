@@ -1,6 +1,5 @@
 # Blender v2.72 (sub 0) OBJ File: 'TopRightGiantFloatyBit.blend'
 # www.blender.org
-mtllib TopRightGiantFloatyBit.mtl
 o TopRightGiantFloatyBit_Circle.002
 v 0.878575 0.099390 -0.819320
 v -0.388255 0.099390 -1.520621
@@ -1025,7 +1024,6 @@ vt 0.844826 0.560870
 vt 0.834378 0.560870
 vt 0.844826 0.569271
 vt 0.834378 0.569271
-usemtl None
 s 1
 f 6/1 12/2 7/3 1/4
 f 5/5 11/6 12/7 6/8
