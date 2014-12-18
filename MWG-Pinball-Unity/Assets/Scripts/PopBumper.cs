@@ -50,12 +50,4 @@ public class PopBumper : MonoBehaviour
       _lastHitTime = Time.time;
     }
   }
-
-  //public void OnCollisionExit(Collision collision)
-  //{
-  //  if (collision.gameObject.tag == BallTag)
-  //  {
-  //    _lastHitTime = Time.time;
-  //  }
-  //}
 }
