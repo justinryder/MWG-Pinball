@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class BallSaver : MonoBehaviour
 {
-
-  private bool holdBall = false;
+  private bool holdBall = true;
 
   private GameObject ball;
 
@@ -12,13 +10,15 @@ public class BallSaver : MonoBehaviour
 
   private float holdTimer = 1.5f;
 
-  // Use this for initialization
   private void Start()
   {
-
+    if (TurnController == null)
+    {
+      Debug.LogError("Assign TurnController to BallSaver!");
+    }
   }
 
-  private void OnCollisionEnter(Collision collision)
+  private void OnTriggerEnter(Collider collision)
   {
     if (collision.gameObject.tag == "Ball")
     {
@@ -27,11 +27,10 @@ public class BallSaver : MonoBehaviour
       holdBall = true;
       ball = collision.gameObject;
       TurnController.CurrentPlayer.AddScore(5000);
-
     }
   }
 
-  private void OnCollisionStay(Collision collision)
+  private void OnTriggerStay(Collider collision)
   {
     if (collision.gameObject.tag == "Ball")
     {
@@ -43,10 +42,9 @@ public class BallSaver : MonoBehaviour
     }
   }
 
-  // Update is called once per frame
   private void Update()
   {
-    if (holdBall)
+    if (holdBall && ball != null)
     {
       holdTimer -= Time.deltaTime;
       if (holdTimer <= 0)
