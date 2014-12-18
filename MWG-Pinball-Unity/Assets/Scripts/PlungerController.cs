@@ -4,7 +4,8 @@ using System.Collections;
 public class PlungerController : MonoBehaviour
 {
   public float Force = 5;
-  public float SpringForce = .05f;
+  public float BallForceMultiplier = 500;
+  public float SpringForce = 0.04f;
   public GameObject PinballPreFab;
 
   private Vector3 Maxsize;
@@ -25,6 +26,17 @@ public class PlungerController : MonoBehaviour
       Vector3 input = new Vector3(0, Input.GetAxis("Vertical"), 0);
       Scale(input * Time.deltaTime * Force);
       Spring();
+      FlingBall();
+  }
+
+  private void FlingBall()
+  {
+      var delta = Maxsize.y - transform.localScale.y;
+
+      if (Input.GetKeyUp("down"))
+      {
+          ball.rigidbody.AddForce(0, delta * BallForceMultiplier, 0);
+      }
   }
 
   private void Spring()
@@ -38,8 +50,7 @@ public class PlungerController : MonoBehaviour
 
   private void Scale(Vector3 amount)
   {
-      //Make sure that we can never get bigger than we can:
-
+      //Make sure that we can never get bigger than we can
       transform.localScale += amount * Time.deltaTime * Force;
       var NewSize = transform.localScale;   
       if (NewSize.y < Minsize.y)
