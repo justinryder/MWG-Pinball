@@ -30,9 +30,11 @@ public class PlungerController : MonoBehaviour
 
   private void FlingBall()
   {
+      var delta = Maxsize.y - transform.localScale.y;
+
       if (Input.GetKeyUp("down") && ball != null)
       {
-        ball.rigidbody.AddForce(transform.up * BallForceMultiplier);
+        ball.rigidbody.AddForce(transform.up * BallForceMultiplier * delta);
       }
   }
 
