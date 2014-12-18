@@ -31,6 +31,8 @@ public class TurnController : MonoBehaviour
 
   private int _currentPlayerIndex = -1;
 
+  private bool _gameOver = false;
+
   #region Events
 
   public event EventHandler<OnTurnStartEventArgs> OnTurnStart;
@@ -158,6 +160,14 @@ public class TurnController : MonoBehaviour
         }
       }
 
+      if (_gameOver)
+      {
+        if (GUILayout.Button("Play Again"))
+        {
+          Application.LoadLevel(0);
+        }
+      }
+
       GUILayout.EndArea();
     }
   }
@@ -184,6 +194,7 @@ public class TurnController : MonoBehaviour
     }
 
     Debug.Log("Game Over");
+    _gameOver = true;
 
     _currentPlayerIndex = -1;
 
