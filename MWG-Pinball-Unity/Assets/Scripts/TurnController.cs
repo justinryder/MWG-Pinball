@@ -137,7 +137,7 @@ public class TurnController : MonoBehaviour
       {
         GUILayout.Label(
           string.Format(
-            "{0}Player {1} - Points: {2} Balls: {3} Extra Balls: {4}",
+            "{0}Player {1} - Points: {2} Balls: {3}",
             CurrentPlayer == player ? "=> " : "",
             player.Number,
             player.Score,
